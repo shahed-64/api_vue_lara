@@ -44,6 +44,10 @@ class TeacherController extends Controller
 
     $photoName = null;
 
+    if (!file_exists(public_path('media'))) {
+    mkdir(public_path('media'), 0777, true);
+}
+
     if ($request->hasFile('photo')) {
 
         $photo = $request->file('photo');
@@ -106,6 +110,9 @@ class TeacherController extends Controller
         'photo'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
     ]);
 
+        if (!file_exists(public_path('media'))) {
+            mkdir(public_path('media'), 0777, true);
+        }
     // Photo update (optional)
     if ($request->hasFile('photo')) {
 
